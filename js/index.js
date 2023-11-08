@@ -84,58 +84,68 @@ var finances = [
   ['Nov-2016', 795914],
   ['Dec-2016', 60988],
   ['Jan-2017', 138230],
-  ['Feb-2017', 671099],
-];
+  ['Feb-2017', 671099]
+]
 
+// Display Results
+var totalMonths = finances.length
 
-
-// Initialize variables to store the results
-var totalMonths = finances.length;
-
-var totalProfitLoss = 0;
+var totalProfitLoss = 0
 var greatestIncrease = {
   date: '',
   amount: -Infinity
-};
+}
 var greatestDecrease = {
   date: '',
   amount: Infinity
-};
-var totalChange = 0;
+}
+var totalChange = 0
 
-// Loop through the financial data to calculate the metrics
+// calculating Data
 for (var i = 0; i < finances.length; i++) {
-  var date = finances[i][0];
-  var amount = finances[i][1];
-  
-  // Calculate the total profit/loss
-  totalProfitLoss += amount;
+  var date = finances[i][0]
+  var amount = finances[i][1]
 
-  // Calculate the change in profit/loss from the previous month (skip for the first month)
+  // Calculating  profit/loss in total
+  totalProfitLoss += amount
+
+  // Calculating  changes  profit/loss
   if (i > 0) {
-    var change = amount - finances[i - 1][1];
-    totalChange += change;
+    var change = amount - finances[i - 1][1]
+    totalChange += change
 
-    // Update the greatest increase and decrease
+    // Updating the greatest increase and decrease in total
     if (change > greatestIncrease.amount) {
-      greatestIncrease.date = date;
-      greatestIncrease.amount = change;
+      greatestIncrease.date = date
+      greatestIncrease.amount = change
     }
     if (change < greatestDecrease.amount) {
-      greatestDecrease.date = date;
-      greatestDecrease.amount = change;
+      greatestDecrease.date = date
+      greatestDecrease.amount = change
     }
   }
 }
 
-// Calculate the average change
-var averageChange = totalChange / (totalMonths - 1);
+// the average change
+var averageChange = totalChange / (totalMonths - 1)
 
-// Display the results on browser
-console.log("Financial Analysis");
-console.log("---------------------------");
-console.log("Total Months: " + totalMonths);
-console.log("Total: $" + totalProfitLoss);
-console.log("Average Change: $" + averageChange.toFixed(2));
-console.log("Greatest Increase in Profits/Losses: " + greatestIncrease.date + " ($" + greatestIncrease.amount + ")");
-console.log("Greatest Decrease in Profits/Losses: " + greatestDecrease.date + " ($" + greatestDecrease.amount + ")");
+// the results on browser / console
+console.log('Financial Analysis')
+console.log('---------------------------')
+console.log('Total Months: ' + totalMonths)
+console.log('Total: $' + totalProfitLoss)
+console.log('Average Change: $' + averageChange.toFixed(2))
+console.log(
+  'Greatest Increase in Profits/Losses: ' +
+    greatestIncrease.date +
+    ' ($' +
+    greatestIncrease.amount +
+    ')'
+)
+console.log(
+  'Greatest Decrease in Profits/Losses: ' +
+    greatestDecrease.date +
+    ' ($' +
+    greatestDecrease.amount +
+    ')'
+)
